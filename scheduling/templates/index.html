@@ -97,7 +97,10 @@
               minDate: tomorrow,
               maxDate: month, 
               maxYear: parseInt(moment().format('YYYY-MM-DD'),10),
-              format: 'YYYY-MM-DD'
+              format: 'YYYY-MM-DD',
+              locale: {
+                format: 'YYYY-MM-DD:00:hh:mm'
+              }
             }, function(start, end, label) {
               var years = moment().diff(start, 'years');
               alert("You are " + years + " years old!");

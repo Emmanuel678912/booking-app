@@ -12,7 +12,7 @@ def home(request):
     if request.method == "POST":
         subject = request.POST.get('subject')
         desc = request.POST.get("desc")
-        #date = request.POST.get("daterange") 
+        date = request.POST.get("daterange") 
 
         def create_event():
 
@@ -26,7 +26,7 @@ def home(request):
                     body={
                         "summary": subject,
                         "description": desc,
-                        "start": {"dateTime": start_datetime.isoformat()},
+                        "start": {"dateTime": date},
                         "end": {
                             "dateTime": (start_datetime + timedelta(minutes=15)).isoformat()
                         },

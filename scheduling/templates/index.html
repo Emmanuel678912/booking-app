@@ -84,9 +84,10 @@
     <script>
 
         $(function() {
+            console.log(moment())
             var tomorrow = moment().add(1, 'days')
 
-            var month = moment().add(30, 'days')
+            var month = moment().add(365, 'days')
 
             $('input[name="daterange"]').daterangepicker({
             
@@ -96,10 +97,10 @@
               timePicker: true,
               minDate: tomorrow,
               maxDate: month, 
-              maxYear: parseInt(moment().format('YYYY-MM-DD'),10),
+              //maxYear: parseInt(moment().format('YYYY-MM-DD'),10),
               format: 'YYYY-MM-DD',
               locale: {
-                format: 'YYYY-MM-DD:00:hh:mm'
+                format: 'YYYY-MM-DD hh:mm:ss'
               }
             }, function(start, end, label) {
               var years = moment().diff(start, 'years');

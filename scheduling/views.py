@@ -14,11 +14,22 @@ def home(request):
         desc = request.POST.get("desc")
         date = request.POST.get("daterange") 
 
+        date = datetime.datetime.strptime(date, '%Y-%m-%d %H:%M:%S')
+        hour_later = date + timedelta(minutes=60)
+
+        print(hour_later)
+
+        hour_later = hour_later.isoformat()
+
+        date = date.isoformat()
+
+        print(date)
+
         def create_event():
 
             service = build_service()
 
-            start_datetime = datetime.datetime.now(tz=pytz.utc)
+            # start_datetime = datetime.datetime.now(tz=pytz.utc)
             event = (
                 service.events()
                 .insert(
@@ -26,9 +37,11 @@ def home(request):
                     body={
                         "summary": subject,
                         "description": desc,
-                        "start": {"dateTime": date},
+                        "start": {
+                            "dateTime": date
+                            },
                         "end": {
-                            "dateTime": (start_datetime + timedelta(minutes=15)).isoformat()
+                            "dateTime": hour_later.isoformat()
                         },
                     },
                 )

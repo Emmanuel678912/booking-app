@@ -15,15 +15,13 @@ def home(request):
         date = request.POST.get("daterange") 
 
         date = datetime.datetime.strptime(date, '%Y-%m-%d %H:%M:%S')
+    
         hour_later = date + timedelta(minutes=60)
-
-        print(hour_later)
 
         hour_later = hour_later.isoformat()
 
         date = date.isoformat()
 
-        print(date)
 
         def create_event():
 
@@ -38,10 +36,12 @@ def home(request):
                         "summary": subject,
                         "description": desc,
                         "start": {
-                            "dateTime": date
+                            "dateTime": date,
+                            "timeZone":"Europe/London"
                             },
                         "end": {
-                            "dateTime": hour_later.isoformat()
+                            "dateTime": hour_later,
+                            "timeZone":"Europe/London"
                         },
                     },
                 )

@@ -12,7 +12,8 @@ def home(request):
     if request.method == "POST":
         subject = request.POST.get('subject')
         desc = request.POST.get("desc")
-        date = request.POST.get("daterange") 
+        date = request.POST.get("daterange")
+        email = request.POST.get("email")
 
         date = datetime.datetime.strptime(date, '%Y-%m-%d %H:%M:%S')
     
@@ -43,6 +44,15 @@ def home(request):
                             "dateTime": hour_later,
                             "timeZone":"Europe/London"
                         },
+                        
+                        "attendees": [
+                            {
+                            "email":email
+                            }
+                        ],
+
+                        # "sendNotifications": True,
+                       
                     },
                 )
                 .execute()
